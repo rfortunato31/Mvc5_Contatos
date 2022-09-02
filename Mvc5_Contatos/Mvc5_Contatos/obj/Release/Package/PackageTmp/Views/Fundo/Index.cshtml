@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Mvc5_Contatos.Models.FundoViewModel>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Lista de Fundos</h2>
+
+<p>
+    @Html.ActionLink("Novo Fundo", "Create")
+</p>
+<hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cnpj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeTipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patrimonio)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cnpj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeTipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patrimonio)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codigo = item.Codigo }) |
+                @Html.ActionLink("Movimentar", "MovFund", new { codigo = item.Codigo }) |
+                @Html.ActionLink("Detalhes", "Details", new { codigo = item.Codigo }) |
+                @Html.ActionLink("Excluir", "Delete", new { codigo = item.Codigo }, new { onclick = "return confirm('Deseja realmente deletar este fundo ?');" })
+            </td>
+        </tr>
+    }
+
+</table>
